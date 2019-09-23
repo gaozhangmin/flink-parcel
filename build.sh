@@ -3,16 +3,15 @@ set -x
 set -e
 set -v
 
-CM_EXT_BRANCH=cm6-6.1.0
-FLINK_URL=http://mirrors.tuna.tsinghua.edu.cn/apache/flink/flink-1.9.0/flink-1.9.0-bin-scala_2.12.tgz 
-#FLINK_MD5='903307847493610c8006992c5eae64a1'
-FLINK_VERSION=1.9.0
-EXTENS_VERSION=BIN-SCALA_2.12
-OS_VERSION=7
-CDH_MIN_FULL=5.2
-CDH_MIN=5
-CDH_MAX_FULL=6.2
-CDH_MAX=6
+FLINK_URL=`sed '/^FLINK_URL=/!d;s/.*=//' flink-parcel.properties` 
+FLINK_VERSION=`sed '/^FLINK_VERSION=/!d;s/.*=//' flink-parcel.properties`
+EXTENS_VERSION=`sed '/^EXTENS_VERSION=/!d;s/.*=//' flink-parcel.properties`
+OS_VERSION=`sed '/^OS_VERSION=/!d;s/.*=//' flink-parcel.properties`
+CDH_MIN_FULL=`sed '/^CDH_MIN_FULL=/!d;s/.*=//' flink-parcel.properties`
+CDH_MIN=`sed '/^CDH_MIN=/!d;s/.*=//' flink-parcel.properties`
+CDH_MAX_FULL=`sed '/^CDH_MAX_FULL=/!d;s/.*=//' flink-parcel.properties`
+CDH_MAX=`sed '/^CDH_MAX=/!d;s/.*=//' flink-parcel.properties`
+
 flink_service_name="FLINK"
 flink_service_name_lower="$( echo $flink_service_name | tr '[:upper:]' '[:lower:]' )"
 flink_archive="$( basename $FLINK_URL )"
@@ -61,9 +60,9 @@ function build_flink_parcel {
     mv ${flink_unzip_folder}  ${flink_parcel_folder}/lib/${flink_service_name_lower}
   fi
   cp -r flink-parcel-src/meta $flink_parcel_folder/
-  cp -r flink-parcel-src/flink-master.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
-  cp -r flink-parcel-src/flink-worker.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
-  cp -r flink-parcel-src/flink-yarn.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
+  #cp -r flink-parcel-src/flink-master.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
+  #cp -r flink-parcel-src/flink-worker.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
+  #cp -r flink-parcel-src/flink-yarn.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
   sed -i -e "s/%flink_version%/$flink_parcel_folder/" ./$flink_parcel_folder/meta/flink_env.sh
   sed -i -e "s/%VERSION%/$FLINK_VERSION/" ./$flink_parcel_folder/meta/parcel.json
   sed -i -e "s/%EXTENS_VERSION%/$EXTENS_VERSION/" ./$flink_parcel_folder/meta/parcel.json
