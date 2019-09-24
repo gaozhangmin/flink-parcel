@@ -105,7 +105,7 @@ CDH_MAX=6
 ## 说明：
 (1) 在如果集群开启了安全，需要配置security.kerberos.login.keytab和security.kerberos.login.principal两个参数才能正正常启动。如未启动kerberos,则在CDH中添加FLINK服务时请清空这两个参数的内容
 
-（2）If you plan to use Apache Flink together with Apache Hadoop (run Flink on YARN, connect to HDFS, connect to HBase, or use some Hadoop-based file system connector) then select the download that bundles the matching Hadoop version, download the optional pre-bundled Hadoop that matches your version and place it in the lib folder of Flink, or export your HADOOP_CLASSPATH（来自flink官网）
+(2) If you plan to use Apache Flink together with Apache Hadoop (run Flink on YARN, connect to HDFS, connect to HBase, or use some Hadoop-based file system connector) then select the download that bundles the matching Hadoop version, download the optional pre-bundled Hadoop that matches your version and place it in the lib folder of Flink, or export your HADOOP_CLASSPATH（来自flink官网）
 
 
 ## 相关参考：　　
