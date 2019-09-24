@@ -66,8 +66,8 @@ function build_flink_parcel {
   sed -i -e "s/%flink_version%/$flink_parcel_folder/" ./$flink_parcel_folder/meta/flink_env.sh
   sed -i -e "s/%VERSION%/$FLINK_VERSION/" ./$flink_parcel_folder/meta/parcel.json
   sed -i -e "s/%EXTENS_VERSION%/$EXTENS_VERSION/" ./$flink_parcel_folder/meta/parcel.json
-  sed -i -e "s/%CDH_MAX_FULL%/$CDH_MAX/" ./$flink_parcel_folder/meta/parcel.json
-  sed -i -e "s/%CDH_MIN_FULL%/$CDH_MIN/" ./$flink_parcel_folder/meta/parcel.json
+  sed -i -e "s/%CDH_MAX_FULL%/$CDH_MAX_FULL/" ./$flink_parcel_folder/meta/parcel.json
+  sed -i -e "s/%CDH_MIN_FULL%/$CDH_MIN_FULL/" ./$flink_parcel_folder/meta/parcel.json
   sed -i -e "s/%SERVICENAME%/$flink_service_name/" ./$flink_parcel_folder/meta/parcel.json
   sed -i -e "s/%SERVICENAMELOWER%/$flink_service_name_lower/" ./$flink_parcel_folder/meta/parcel.json
   java -jar cm_ext/validator/target/validator.jar -d ./$flink_parcel_folder
