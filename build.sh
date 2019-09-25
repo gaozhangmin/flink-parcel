@@ -60,6 +60,7 @@ function build_flink_parcel {
     mv ${flink_unzip_folder}  ${flink_parcel_folder}/lib/${flink_service_name_lower}
   fi
   cp -r flink-parcel-src/meta $flink_parcel_folder/
+  chmod 755 flink-parcel-src/flink*
   cp -r flink-parcel-src/flink-master.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
   cp -r flink-parcel-src/flink-worker.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
   cp -r flink-parcel-src/flink-yarn.sh ${flink_parcel_folder}/lib/${flink_service_name_lower}/bin/
@@ -87,7 +88,7 @@ function build_flink_csd_on_yarn {
   cp -rf ./flink-csd-on-yarn-src ${flink_csd_build_folder}
   sed -i -e "s/%SERVICENAME%/$livy_service_name/" ${flink_csd_build_folder}/descriptor/service.sdl
   sed -i -e "s/%SERVICENAMELOWER%/$flink_service_name_lower/" ${flink_csd_build_folder}/descriptor/service.sdl
-  sed -i -e "s/%VERSIONS%/$FLINK_VERSION/" ${flink_csd_build_folder}/descriptor/service.sdl
+  sed -i -e "s/%VERSION%/$FLINK_VERSION/" ${flink_csd_build_folder}/descriptor/service.sdl
   sed -i -e "s/%CDH_MIN%/$CDH_MIN/" ${flink_csd_build_folder}/descriptor/service.sdl
   sed -i -e "s/%CDH_MAX%/$CDH_MAX/" ${flink_csd_build_folder}/descriptor/service.sdl
   sed -i -e "s/%SERVICENAMELOWER%/$flink_service_name_lower/" ${flink_csd_build_folder}/scripts/control.sh
